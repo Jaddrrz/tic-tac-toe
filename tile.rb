@@ -1,5 +1,5 @@
-class tile
-  attr_accessor :position :mark_type
+class Tile
+  # attr_accessor :position :mark_type
 
 # Set default values
   def initialize(position)

@@ -1,4 +1,9 @@
-require tile
+require './tile.rb'
+
+# Create the 9 objects
+for n in 1..9
+  Tile.new(n)
+end
 
 # Create initial board with reference (consists of 9 lines)
 
@@ -11,7 +16,10 @@ puts " O " + "|" + " O " + "|" + " O "
 #Line 3
 puts "___" + "|" + "___" + "|" + "___"
 
-#Line 4position
+#Line 4
+puts "   " + "|" + "   " + "|"
+
+#Line 5
 puts " O " + "|" + " O " + "|" + " O " 
 
 #Line 6
