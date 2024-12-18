@@ -1,3 +1,5 @@
+require tile
+
 # Create initial board with reference (consists of 9 lines)
 
 #Line 1
@@ -9,10 +11,7 @@ puts " O " + "|" + " O " + "|" + " O "
 #Line 3
 puts "___" + "|" + "___" + "|" + "___"
 
-#Line 4
-puts "   " + "|" + "   " + "|"
-
-#Line 5
+#Line 4position
 puts " O " + "|" + " O " + "|" + " O " 
 
 #Line 6
@@ -25,9 +24,9 @@ puts "   " + "|" + "   " + "|"
 puts " O " + "|" + " O " + "|" + " O " 
 
 #Line 9
-puts "   " + "|" + "   " + "|"
+puts "   " + "|" + "   " + "|" 
 
-puts "Use these as reference" , "1 2 3", "4 5 6", "7 8 9"
+puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
 
 # Find a way to choose where to insert a mark:
 # - make a "tile" class where you put a circle/cross
