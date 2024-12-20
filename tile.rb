@@ -1,15 +1,20 @@
 class Tile
-  # attr_accessor :position :mark_type
+
+# attr_accessor: :position, :mark_type
 
 # Set default values
   def initialize(position)
     @position = position
-    @mark_type= ""
+    @mark_type= "O"
   end
 
 # Parameteres are given by the already split input, this function sets position and mark_type of the object
-  def fill(given_position, given_type)
-    self.position = given_position
-    self.mark_type = given_type
+  def self.fill(given_position, given_type)
+    position = given_position
+    mark_type = given_type
+  end
+
+  def value_mark
+    @mark_type
   end
 end

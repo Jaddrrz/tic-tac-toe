@@ -1,38 +1,53 @@
 require './tile.rb'
 
-# Create the 9 objects
+# Create array containing 9 instances of Tile and another with the mark values 
+
+instances = []
+marks = []
 for n in 1..9
-  Tile.new(n)
+  instances.push(Tile.new(n))
 end
 
-# Create initial board with reference (consists of 9 lines)
+# Push the mark values into the marks array
 
-#Line 1
-puts "   " + "|" + "   " + "|"
+instances.each do |instance|
+  marks.push(instance.value_mark)
+end
 
-#Line 2
-puts " O " + "|" + " O " + "|" + " O " 
+p marks
 
-#Line 3
-puts "___" + "|" + "___" + "|" + "___"
+# Shows board with reference (consists of 9 lines)
 
-#Line 4
-puts "   " + "|" + "   " + "|"
+def show_board(marks)
+  #Line 1
+  puts "   " + "|" + "   " + "|"
 
-#Line 5
-puts " O " + "|" + " O " + "|" + " O " 
+  #Line 2
+  puts " #{marks[0]} " + "|" + " #{marks[1]} " + "|" + " #{marks[2]} " 
 
-#Line 6
-puts "___" + "|" + "___" + "|" + "___"
+  #Line 3
+  puts "___" + "|" + "___" + "|" + "___"
 
-#Line 7
-puts "   " + "|" + "   " + "|"
+  #Line 4
+  puts "   " + "|" + "   " + "|"
 
-#Line 8
-puts " O " + "|" + " O " + "|" + " O " 
+  #Line 5
+  puts " #{marks[3]} " + "|" + " #{marks[4]} " + "|" + " #{marks[5]} " 
 
-#Line 9
-puts "   " + "|" + "   " + "|" 
+  #Line 6
+  puts "___" + "|" + "___" + "|" + "___"
+
+  #Line 7
+  puts "   " + "|" + "   " + "|"
+
+  #Line 8
+  puts " #{marks[6]} " + "|" + " #{marks[7]} " + "|" + " #{marks[8]} " 
+
+  #Line 9
+  puts "   " + "|" + "   " + "|" 
+end
+
+show_board(marks)
 
 puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
 
