@@ -5,7 +5,7 @@ class Tile
 # Set default values
   def initialize(position)
     @position = position
-    @mark_type= "O"
+    @mark_type= " "
   end
 
 # Parameteres are given by the already split input, this function sets position and mark_type of the object

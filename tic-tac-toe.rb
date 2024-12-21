@@ -14,9 +14,7 @@ instances.each do |instance|
   marks.push(instance.value_mark)
 end
 
-p marks
-
-# Shows board with reference (consists of 9 lines)
+# Show board with reference (consists of 9 lines)
 
 def show_board(marks)
   #Line 1
@@ -45,11 +43,17 @@ def show_board(marks)
 
   #Line 9
   puts "   " + "|" + "   " + "|" 
+
+  puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
 end
 
 show_board(marks)
 
-puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
+puts "Type your play, for example: X 9"
+
+user_input = gets
+
+puts "Your play is #{user_input}"
 
 # Find a way to choose where to insert a mark:
 # - make a "tile" class where you put a circle/cross
