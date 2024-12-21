@@ -49,11 +49,17 @@ end
 
 show_board(marks)
 
-puts "Type your play, for example: X 9"
+puts "\nType your play, for example: X 9"
 
-user_input = gets
+user_input = gets.chomp.split(" ")
 
-puts "Your play is #{user_input}"
+
+while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false)
+  puts "Type again"
+  user_input = gets.chomp.split(" ")
+end
+
+puts "You played #{user_input}"
 
 # Find a way to choose where to insert a mark:
 # - make a "tile" class where you put a circle/cross
