@@ -1,19 +1,5 @@
 require './tile.rb'
 
-# Create array containing 9 instances of Tile and another with the mark values 
-
-instances = []
-marks = []
-for n in 1..9
-  instances.push(Tile.new(n))
-end
-
-# Push the mark values into the marks array
-
-instances.each do |instance|
-  marks.push(instance.value_mark)
-end
-
 # Show board with reference (consists of 9 lines)
 
 def show_board(marks)
@@ -47,6 +33,20 @@ def show_board(marks)
   puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
 end
 
+# Create array containing 9 instances of Tile and another with the mark values 
+
+instances = []
+marks = []
+for n in 1..9
+  instances.push(Tile.new(n))
+end
+
+# Push the mark values into the marks array
+
+instances.each do |instance|
+  marks.push(instance.value_mark)
+end
+
 show_board(marks)
 
 puts "\nType your play, for example: X 9"
@@ -55,11 +55,21 @@ user_input = gets.chomp.split(" ")
 
 
 while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false)
-  puts "Type again"
+  puts "\nType again"
   user_input = gets.chomp.split(" ")
 end
 
-puts "You played #{user_input}"
+puts "\nYou played #{user_input}"
+
+def update_marks(mark_type, position)
+  marks.each_with_index do |mark, index|
+    if index == (position - 1)
+    mark == mark_type
+    end
+  end
+end
+
+update_marks(user_input[0], user_input[1])
 
 # Find a way to choose where to insert a mark:
 # - make a "tile" class where you put a circle/cross
