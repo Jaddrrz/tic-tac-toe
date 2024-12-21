@@ -61,15 +61,20 @@ end
 
 puts "\nYou played #{user_input}"
 
-def update_marks(mark_type, position)
+def update_board(mark_type, position, marks)
   marks.each_with_index do |mark, index|
-    if index == (position - 1)
-    mark == mark_type
+    if index == (position.to_i - 1)
+      p mark
+      p index
+      marks[position.to_i - 1] = mark_type.to_s
+      p marks
     end
   end
 end
 
-update_marks(user_input[0], user_input[1])
+update_board(user_input[0], user_input[1], marks)
+
+show_board(marks)
 
 # Find a way to choose where to insert a mark:
 # - make a "tile" class where you put a circle/cross
