@@ -33,6 +33,18 @@ def show_board(marks)
   puts "\nUse these as reference" , "\n1 2 3", "4 5 6", "7 8 9"
 end
 
+# Update the board with the given play
+def update_board(mark_type, position, marks)
+  
+  # Go through the marks array and update the element that corresponds to the wanted tile
+  
+  marks.each_with_index do |mark, index|
+    if index == (position.to_i - 1)   # "Minus one" is needed because index doesn't correspond to board position"
+      marks[position.to_i - 1] = mark_type.to_s # Updates the array element
+    end
+  end
+end
+
 # Create array containing 9 instances of Tile and another with the mark values 
 
 instances = []
@@ -60,17 +72,6 @@ while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.
 end
 
 puts "\nYou played #{user_input}"
-
-def update_board(mark_type, position, marks)
-  marks.each_with_index do |mark, index|
-    if index == (position.to_i - 1)
-      p mark
-      p index
-      marks[position.to_i - 1] = mark_type.to_s
-      p marks
-    end
-  end
-end
 
 update_board(user_input[0], user_input[1], marks)
 
