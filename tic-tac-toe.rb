@@ -1,5 +1,20 @@
 require './tile.rb'
 
+# Ask user to input their play which gets split and saved into "user_input"
+
+def start_round(user_input)
+  puts "\nType your play, for example: X 9"
+
+  user_input = gets.chomp.split(" ")
+
+  while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false) # Check if both parts of input are acceptable 
+    puts "\nType again"
+    user_input = gets.chomp.split(" ")
+  end
+
+  puts "\nYou played #{user_input}"
+end
+
 # Show board with reference (consists of 9 lines)
 
 def show_board(marks)
@@ -34,19 +49,26 @@ def show_board(marks)
 end
 
 # Update the board with the given play
-def update_board(mark_type, position, marks)
+def update_board(mark_type, position, marks)# Show board with reference (consists of 9 lines)
   
   # Go through the marks array and update the element that corresponds to the wanted tile
-  
+
   marks.each_with_index do |mark, index|
     if index == (position.to_i - 1)   # "Minus one" is needed because index doesn't correspond to board position"
       marks[position.to_i - 1] = mark_type.to_s # Updates the array element
     end
   end
+  p marks
 end
+
+
+# Create win conditions: 1 2 3, 4 5 6, 7 8 9, 1 4 7, 2 5 8, 3 6 9, 1 5 9, 3 5 7
+
+win = false
 
 # Create array containing 9 instances of Tile and another with the mark values 
 
+user_input = []
 instances = []
 marks = []
 for n in 1..9
@@ -59,41 +81,23 @@ instances.each do |instance|
   marks.push(instance.value_mark)
 end
 
+
 show_board(marks)
 
-puts "\nType your play, for example: X 9"
-
-user_input = gets.chomp.split(" ")
+start_round(user_input)
 
 
-while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false)
-  puts "\nType again"
-  user_input = gets.chomp.split(" ")
-end
-
-puts "\nYou played #{user_input}"
+p user_input
 
 update_board(user_input[0], user_input[1], marks)
 
 show_board(marks)
 
-# Find a way to choose where to insert a mark:
-# - make a "tile" class where you put a circle/cross
-# - find a way to put it in, maybe use positions like a1, b3, c2 
-# - think of making a grid, line/diagonal and tile classes to manage everything:
-#   - grid class is used as a container for tiles, maybe use to manage marks
-#   - line class check whether a player has won or not
 
-# How to insert marks:
-# - input position and mark (8 X) 
-# - use Tile class that has a "fill" function -> split the input and use them as parameters to fill the right tile, the mark parameter is used to create the type object
+if marks[0] == marks[1] && marks[0] == marks[2]
+  win == true
+end
 
-# Display the updated grid:
-# - need 9 active blank objects that are always put in the commandline, these objects can be updated through the tile class
-
-# Use range from 1 to 9 for tiles, a player chooses the corresponding tile number to locate mark, randomly decide which tile the npc chooses,
-# Create a win condition, maybe insert all possible win conditions and keep checking if one is true:
-#   All win conditions are 8 (3 horizontals, 3 verticals and 2 diagonals) -> need to check if the corresponding tiles have the same mark ->
-#   the inserted mark must be objects in order to recognise whether a win condition is true
-
-# Announce winner or tie
+if win == true
+  puts "A player has won"
+end
