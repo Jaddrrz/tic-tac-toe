@@ -5,7 +5,7 @@ require './tile.rb'
 def start_round(user_input)
   puts "\nType your play, for example: X 9"
 
-  user_input = gets.chomp.split(" ")
+  user_input.replace(gets.chomp.split(" "))
 
   while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false) # Check if both parts of input are acceptable 
     puts "\nType again"
@@ -13,6 +13,7 @@ def start_round(user_input)
   end
 
   puts "\nYou played #{user_input}"
+  user_input
 end
 
 # Show board with reference (consists of 9 lines)
@@ -87,17 +88,33 @@ show_board(marks)
 start_round(user_input)
 
 
-p user_input
-
 update_board(user_input[0], user_input[1], marks)
 
 show_board(marks)
 
 
-if marks[0] == marks[1] && marks[0] == marks[2]
-  win == true
-end
+start_round(user_input)
 
-if win == true
-  puts "A player has won"
-end
+
+update_board(user_input[0], user_input[1], marks)
+
+show_board(marks)
+
+start_round(user_input)
+
+
+update_board(user_input[0], user_input[1], marks)
+
+show_board(marks)
+
+# if marks[0] == marks[1] && marks[0] == marks[2]
+#   win == true
+# end
+
+# if win == true
+#   puts "A player has won"
+# end
+
+p marks[0]
+p marks[1]
+p marks[2]

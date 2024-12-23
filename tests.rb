@@ -9,14 +9,13 @@
 # end
 
 blank = []
-new_blank = []
+
 
 def change(something)
-  new_blank = something
-  new_blank = gets.chomp.split(" ")
-  p new_blank
-  return new_blank
+  something.replace(gets.chomp.split(" "))
+  p something
+  something
 end
 
 change(blank)
-p new_blank
+p blank
