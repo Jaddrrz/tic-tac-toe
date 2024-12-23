@@ -50,7 +50,7 @@ def show_board(marks)
 end
 
 # Update the board with the given play
-def update_board(mark_type, position, marks)# Show board with reference (consists of 9 lines)
+def update_board(mark_type, position, marks)
   
   # Go through the marks array and update the element that corresponds to the wanted tile
 
@@ -59,9 +59,21 @@ def update_board(mark_type, position, marks)# Show board with reference (consist
       marks[position.to_i - 1] = mark_type.to_s # Updates the array element
     end
   end
-  p marks
 end
 
+# Add a random play from the "computer"
+
+def random_input(user_input, marks)
+  
+  # Find a position that was not taken by the previous user play
+  random_index = rand(1..9) 
+    while random_index.to_i == user_input[1].to_i
+      random_index = rand(1..9)
+    end
+  
+  marks[random_index.to_i - 1] = "O"
+  p marks
+end
 
 # Create win conditions: 1 2 3, 4 5 6, 7 8 9, 1 4 7, 2 5 8, 3 6 9, 1 5 9, 3 5 7
 
@@ -90,31 +102,20 @@ start_round(user_input)
 
 update_board(user_input[0], user_input[1], marks)
 
-show_board(marks)
-
-
-start_round(user_input)
-
-
-update_board(user_input[0], user_input[1], marks)
+random_input(user_input, marks)
 
 show_board(marks)
 
-start_round(user_input)
 
 
-update_board(user_input[0], user_input[1], marks)
 
-show_board(marks)
 
-# if marks[0] == marks[1] && marks[0] == marks[2]
-#   win == true
-# end
 
-# if win == true
-#   puts "A player has won"
-# end
+if marks[0] == marks[1] && marks[0] == marks[2]
+  win = true1
+end
 
-p marks[0]
-p marks[1]
-p marks[2]
+if win == true
+  puts "A player has won"
+end
+
