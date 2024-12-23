@@ -65,19 +65,20 @@ end
 
 def random_input(user_input, marks)
   
-  # Find a position that was not taken by the previous user play
+  # Find a position that was not taken by previous plays
   random_index = rand(1..9) 
-    while random_index.to_i == user_input[1].to_i
-      random_index = rand(1..9)
-    end
+
+  while marks[random_index.to_i - 1] != " "
+    random_index = rand(1..9)
+  end
   
-  marks[random_index.to_i - 1] = "O"
-  p marks
+  marks[random_index.to_i - 1] = "O" # Updates the board
 end
 
 # Create win conditions: 1 2 3, 4 5 6, 7 8 9, 1 4 7, 2 5 8, 3 6 9, 1 5 9, 3 5 7
 
 win = false
+winner = ""
 
 # Create array containing 9 instances of Tile and another with the mark values 
 
@@ -94,28 +95,60 @@ instances.each do |instance|
   marks.push(instance.value_mark)
 end
 
-
 show_board(marks)
 
-start_round(user_input)
+while win == false
 
+  start_round(user_input)
 
-update_board(user_input[0], user_input[1], marks)
+  update_board(user_input[0], user_input[1], marks)
 
-random_input(user_input, marks)
+  random_input(user_input, marks)
 
-show_board(marks)
+  show_board(marks)
 
+  if marks[0] == marks[1] && marks[0] == marks[2] && marks[0] != " "
+    win = true
+    winner = marks[0]
+  end
 
+  if marks[3] == marks[4] && marks[3] == marks[5] && marks[3] != " "
+    win = true
+    winner = marks[3]
+  end
 
+  if marks[6] == marks[7] && marks[6] == marks[8] && marks[6] != " "
+    win = true
+    winner = marks[6]
+  end
 
+  if marks[0] == marks[3] && marks[0] == marks[6] && marks[0] != " "
+    win = true
+    winner = marks[0]
+  end
 
+  if marks[1] == marks[4] && marks[1] == marks[7] && marks[1] != " "
+    win = true
+    winner = marks[1]
+  end
 
-if marks[0] == marks[1] && marks[0] == marks[2]
-  win = true1
-end
+  if marks[2] == marks[5] && marks[2] == marks[8] && marks[2] != " "
+    win = true
+    winner = marks[2]
+  end
 
-if win == true
-  puts "A player has won"
+  if marks[0] == marks[4] && marks[0] == marks[8] && marks[0] != " "
+    win = true
+    winner = marks[0]
+  end
+
+  if marks[2] == marks[4] && marks[2] == marks[6] && marks[2] != " "
+    win = true
+    winner = marks[2]
+  end
+
+  if win == true
+    puts "\n#{winner} has won"
+  end
 end
 

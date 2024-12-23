@@ -8,14 +8,21 @@
 #   split_test = test_input.split(" ")
 # end
 
-blank = []
 
+# blank = []
 
-def change(something)
-  something.replace(gets.chomp.split(" "))
-  p something
-  something
+# def change(something)
+#   something.replace(gets.chomp.split(" "))
+#   p something
+#   something
+# end
+
+# change(blank)
+# p blank
+
+a = 1
+b = 1
+c = 1
+if a == b && a == c && a != nil
+  p "yay"
 end
-
-change(blank)
-p blank
