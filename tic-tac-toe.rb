@@ -2,12 +2,12 @@ require './tile.rb'
 
 # Ask user to input their play which gets split and saved into "user_input"
 
-def start_round(user_input)
+def start_round(user_input, marks)
   puts "\nType your play, for example: X 9"
 
   user_input.replace(gets.chomp.split(" "))
 
-  while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false) # Check if both parts of input are acceptable 
+  while (["X", "O"].include?(user_input[0].to_s) == false) || (user_input[1].to_i.between?(1,9) == false) || (marks[user_input[1].to_i - 1] != " ") # Check if both parts of input are acceptable 
     puts "\nType again"
     user_input = gets.chomp.split(" ")
   end
@@ -99,7 +99,7 @@ show_board(marks)
 
 while win == false
 
-  start_round(user_input)
+  start_round(user_input, marks)
 
   update_board(user_input[0], user_input[1], marks)
 
