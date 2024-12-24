@@ -3,7 +3,7 @@ require './tile.rb'
 # Ask user to input their play which gets split and saved into "user_input"
 
 def start_round(user_input, marks)
-  puts "\nType your play, for example: X 9"
+  puts "\nType your play (for example: X 9)"
 
   user_input.replace(gets.chomp.split(" "))
 
@@ -12,7 +12,7 @@ def start_round(user_input, marks)
     user_input = gets.chomp.split(" ")
   end
 
-  puts "\nYou played #{user_input}"
+  puts "\nYou played #{user_input[0]} #{user_input[1]}"
   user_input
 end
 
@@ -85,6 +85,9 @@ winner = ""
 user_input = []
 instances = []
 marks = []
+
+# Create the 9 instances of Tile
+
 for n in 1..9
   instances.push(Tile.new(n))
 end
@@ -97,6 +100,8 @@ end
 
 show_board(marks)
 
+# Start the loop that ends when a win condition is met
+
 while win == false
 
   start_round(user_input, marks)
@@ -107,7 +112,7 @@ while win == false
 
   show_board(marks)
 
-  if marks[0] == marks[1] && marks[0] == marks[2] && marks[0] != " "
+  if marks[0] == marks[1] && marks[0] == marks[2] && marks[0] != " " # The marks[] != " " prevents the blank tiles from being considered
     win = true
     winner = marks[0]
   end
